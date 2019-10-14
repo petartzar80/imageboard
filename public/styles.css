@@ -1,0 +1,44 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#main {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    /* display: grid; */
+    /* grid-template-columns: 33% 33% 33%; */
+}
+
+.imageWindow {
+    display: grid;
+    border: 3px solid yellow;
+    width: 300px;
+    height: 300px;
+    justify-items: center;
+}
+
+.imageWindow img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    /* margin: 0 auto; */
+}
+
+.imageDiv {
+    border: 3px solid green;
+}
+
+.imageTitle {
+    border: 3px red solid;
+}
+
+h1 {
+    display: flex;
+    justify-content: space-around;
+    /* color: green; */
+    margin: 0 auto;
+}

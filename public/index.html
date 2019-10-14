@@ -2,17 +2,35 @@
 <html>
 <head>
     <title></title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <h1>IMAGEBOARD</h1>
     <div id="main">
-        <ul>
-            <li v-for="image in images">{{image.url}}</li>
-            <li v-for="image in images">
-                <img :src="image.url">
-            </li>
+        <div v-for="image in images" class="imageWindow">
+
+                <img  :src="image.url">
+
+            <br>
+            <div class="imageTitle">
+                <p>{{image.title}}</p>
+            </div>
+
+
+        </div>
+
             <!-- <strong v-if="chicken.name == 'Chicken Little'">!!!</strong> -->
 
         </ul>
+        <!-- <ul>
+            <li v-for="image in images">
+                <div class="imageWindow">
+                    <img :src="image.url">
+                </div>
+            </li>
+
+
+        </ul> -->
     </div>
     <script src="/js/vue.js"></script>
     <script src="/js/axios.min.js"></script>
