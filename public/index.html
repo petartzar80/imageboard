@@ -4,7 +4,21 @@
     <title></title>
 </head>
 <body>
+    <div id="main">
+        <ul>
+            <li v-for="image in images">{{image.url}}</li>
+            <li v-for="image in images">
+                <img :src="image.url">
+            </li>
+            <!-- <strong v-if="chicken.name == 'Chicken Little'">!!!</strong> -->
+
+        </ul>
+    </div>
     <script src="/js/vue.js"></script>
     <script src="/js/axios.min.js"></script>
+    <script src="/js/script.js">
+
+    </script>
 </body>
+
 </html>

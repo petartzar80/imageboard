@@ -29,3 +29,6 @@ INSERT INTO images (url, username, title, description) VALUES (
     'Hello Berlin',
     'This is going to be worth a lot of money one day.'
 );
+
+-- SELECT * FROM images
+-- ORDER BY id DESC;
