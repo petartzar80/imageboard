@@ -3,25 +3,36 @@
 <head>
     <title></title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Special+Elite&display=swap" rel="stylesheet">
+
 </head>
 <body>
-    <h1>IMAGEBOARD</h1>
+    <h1>Les Images</h1>
+
     <div id="main">
-        <div v-for="image in images" class="imageWindow">
-
-                <img  :src="image.url">
-
-            <br>
-            <div class="imageTitle">
-                <p>{{image.title}}</p>
-            </div>
-
-
+        <div class="input">
+            <input v-model="username" name="username" placeholder="username">
+            <input v-model="title" name="title" placeholder="title">
+            <input v-model="desc" name="description" placeholder="description">
+            <input type="file" accept="image/*" @change="fileSelected">
+            <button @click="upload">upload</button>
         </div>
+        <br>
+        <div class="imageDiv">
+            <div v-for="image in images" class="imageWindow">
+                    <img  :src="image.url">
+                <br>
+                <div class="imageTitle">
+                    <p>{{image.title}}</p>
+                </div>
+            </div>
+        </div>
+
 
             <!-- <strong v-if="chicken.name == 'Chicken Little'">!!!</strong> -->
 
-        </ul>
+
         <!-- <ul>
             <li v-for="image in images">
                 <div class="imageWindow">
