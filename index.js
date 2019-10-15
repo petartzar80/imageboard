@@ -28,42 +28,29 @@ const uploader = multer({
 app.use(express.static("./public"));
 
 app.get("/images", (req, res) => {
-    // res.json([
-    //     { name: "Chicken Little" },
-    //     { name: "Funky Chicken" },
-    //     { name: "That chicken in that movie" }
-    // ]);
     getImages().then(({ rows }) => {
         console.log("rows: ", rows);
-        // for (let i = 0; i < rows.length; i++) {
-        //     console.log();
-        // }
         res.json(rows);
-        // res.json([
-        //     { name: "Chicken Little" },
-        //     { name: "Funky Chicken" },
-        //     { name: "That chicken in that movie" }
-        // ]);
     });
 });
 
 app.post("/upload", uploader.single("image"), s3.upload, function(req, res) {
     const { username, title, desc } = req.body;
-    const imageUrl = `${s3Url}${req.file.filename}`;
-    addImage(imageUrl, username, title, desc)
+    const url = `${s3Url}${req.file.filename}`;
+    addImage(url, username, title, desc)
         .then(function({ rows }) {
             res.json({
                 username,
                 title,
                 desc,
-                imageUrl,
+                url,
                 id: rows[0].id
             });
             //send image to  client
         })
         .catch(function(err) {
             console.log(err);
-            res;
+            res.sendStatus(500);
         });
     // if (req.file) {
     //     const { username, desc, title } = req.body;

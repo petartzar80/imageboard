@@ -41,8 +41,8 @@
                     .post("/upload", fd)
                     .then(
                         function(res) {
-                            console.log("axios upload res: ", res.data);
-                            this.images.unshift(res);
+                            console.log("axios upload res: ", res);
+                            this.images.unshift(res.data);
                             //unshift the new  image into the array
                         }.bind(this)
                     )
