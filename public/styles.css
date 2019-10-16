@@ -137,7 +137,11 @@ img:hover {
 }
 
 .input {
-    display: block;
+    /* display: block; */
+}
+
+.input p {
+    display: inline;
 }
 
 h1 {

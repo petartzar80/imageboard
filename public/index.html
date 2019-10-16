@@ -62,7 +62,21 @@
 
             <h1 @click="closeModal">My image template {{selectedImage}}</h1>
             <img  :src="images.url">
-            
+            <div class="imageTitle">
+                <h1>{{images.title}}</h1>
+                <h2>{{images.description}}</h2>
+                <p>Uploaded by {{images.username}}</p>
+            </div>
+            <div class="input">
+                <p>Comment </p><input v-model="comment" name="comment" placeholder="comment">
+                <p>Username </p><input v-model="user" name="user" placeholder="username">
+                <button @click="submit">submit</button>
+            </div>
+            <p>Comments:</p>
+            <div v-for="comment in comments" class="comments">
+
+                <p>{{comment.comment_user}} : {{comment.comment}}</p>
+            </div>
 
         </div>
     </script>

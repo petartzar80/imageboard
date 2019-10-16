@@ -25,9 +25,12 @@
         data: function() {
             return {
                 images: [],
+                comments: [],
                 username: "",
                 title: "",
-                desc: ""
+                desc: "",
+                comment: "",
+                user: ""
             };
         },
         props: ["postTitle", "selectedImage"],
@@ -41,7 +44,11 @@
                     function(resp) {
                         console.log("res images: ", resp);
                         console.log("res images data: ", resp.data);
-                        this.images = resp.data;
+                        this.images = resp.data.images;
+                        this.comments = resp.data.comments;
+                        // this.comments.unshift(this.comment);
+                        // this.images.unshift(resp.data);
+                        // this.username = resp.data[0].
                     }.bind(this)
                 )
                 .catch(function() {
@@ -52,6 +59,28 @@
             closeModal: function() {
                 console.log("Emitting from the component");
                 this.$emit("close", this.count);
+            },
+            submit: function() {
+                let commentData = {
+                    imageId: this.selectedImage,
+                    user: this.user,
+                    comment: this.comment
+                };
+                axios
+                    .post("/comment", commentData)
+                    .then(
+                        function(res) {
+                            console.log("axios upload res: ", res);
+                            console.log("res.data.comment:", res.data.comment);
+                            // this.comment = res.data.comment;
+                            this.comments.unshift(res.data);
+                            //unshift the new  image into the array
+                        }.bind(this)
+                    )
+                    .catch(function(error) {
+                        this.error = true;
+                        console.log("error: ", error);
+                    });
             }
         }
     });
@@ -136,6 +165,7 @@
             closeMe: function(count) {
                 console.log("closeMe is running");
                 console.log("count is:", count);
+                this.selectedImage = null;
             }
         }
     });
