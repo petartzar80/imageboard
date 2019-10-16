@@ -1,4 +1,60 @@
 (function() {
+    Vue.component("first-component", {
+        template: "#template",
+        data: function() {
+            return {
+                name: "Pete",
+                count: 0
+            };
+        },
+        props: ["postTitle", "selectedFruit"],
+        mounted: function() {
+            // make an axios request to get the info about the image with the id
+            console.log("postTitle", this.postTitle);
+            console.log("selectedFruit", this.selectedFruit);
+        },
+        methods: {
+            closeModal: function() {
+                console.log("Emitting from the component");
+                this.$emit("close", this.count);
+            }
+        }
+    });
+    Vue.component("image-modal", {
+        template: "#imageTemplate",
+        data: function() {
+            return {
+                images: [],
+                username: "",
+                title: "",
+                desc: ""
+            };
+        },
+        props: ["postTitle", "selectedImage"],
+        mounted: function() {
+            // make an axios request to get the info about the image with the id
+            console.log("postTitle", this.postTitle);
+            console.log("selectedImage", this.selectedImage);
+            axios
+                .get(`/images/${this.selectedImage}`)
+                .then(
+                    function(resp) {
+                        console.log("res images: ", resp);
+                        console.log("res images data: ", resp.data);
+                        this.images = resp.data;
+                    }.bind(this)
+                )
+                .catch(function() {
+                    console.log("catch");
+                });
+        },
+        methods: {
+            closeModal: function() {
+                console.log("Emitting from the component");
+                this.$emit("close", this.count);
+            }
+        }
+    });
     new Vue({
         el: "#main",
         data: {
@@ -6,7 +62,23 @@
             username: "",
             title: "",
             desc: "",
-            file: null
+            file: null,
+            selectedFruit: null,
+            selectedImage: null,
+            fruits: [
+                {
+                    title: "🥝",
+                    id: 1
+                },
+                {
+                    title: "🍓",
+                    id: 2
+                },
+                {
+                    title: "🍋",
+                    id: 3
+                }
+            ]
         },
         created: function() {
             console.log("created!");
@@ -60,6 +132,10 @@
             fileSelected: function(e) {
                 console.log(e.target.files);
                 this.file = e.target.files[0];
+            },
+            closeMe: function(count) {
+                console.log("closeMe is running");
+                console.log("count is:", count);
             }
         }
     });

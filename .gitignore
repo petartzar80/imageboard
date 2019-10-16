@@ -3,5 +3,7 @@ node_modules
 secrets.json
 notes.md
 /public/js/script-reference.js
+/public/js/script-component-ref.js
 /public/index-reference.html
+/public/index-component-ref.html
 index-reference.js

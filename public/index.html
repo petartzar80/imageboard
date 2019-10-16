@@ -11,6 +11,12 @@
     <h1>Les Images.</h1>
 
     <div id="main">
+        <first-component @close="closeMe" :selected-fruit="selectedFruit" post-title="hello" v-if="selectedFruit"></first-component>
+
+        <image-modal @close="closeMe" :selected-image="selectedImage" post-title="hello" v-if="selectedImage"></image-modal>
+
+        <p @click="selectedFruit = fruit.id" class="fruit" v-for="fruit in fruits" v-if="fruits.length">{{fruit.title}}</p>
+        <!-- <first-component></first-component> -->
         <div class="input">
             <input v-model="username" name="username" placeholder="username">
             <input v-model="title" name="title" placeholder="title">
@@ -21,7 +27,7 @@
         </div>
         <br>
         <div class="imageDiv">
-            <div v-for="image in images" class="imageWindow">
+            <div @click="selectedImage = image.id" v-for="image in images" class="imageWindow" v-if="images.length">
                     <img  :src="image.url">
                 <br>
                 <div class="imageTitle">
@@ -44,6 +50,22 @@
 
         </ul> -->
     </div>
+    <script type="text/x-template" id="template">
+        <div class="components">
+            <h1 @click="closeModal">My first template {{selectedFruit}}</h1>
+            My name is: {{name}}
+            <button @click="count++">Click Me!</button> Count: {{count}}
+        </div>
+    </script>
+    <script type="text/x-template" id="imageTemplate">
+        <div class="components">
+
+            <h1 @click="closeModal">My image template {{selectedImage}}</h1>
+            <img  :src="images.url">
+            
+
+        </div>
+    </script>
     <script src="/js/vue.js"></script>
     <script src="/js/axios.min.js"></script>
     <script src="/js/script.js">

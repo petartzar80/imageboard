@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const s3 = require("./s3");
 const { s3Url } = require("./config");
-const { getImages, addImage } = require("./db");
+const { getImages, getImagesModal, addImage } = require("./db");
 const multer = require("multer");
 const uidSafe = require("uid-safe");
 const path = require("path");
@@ -32,6 +32,20 @@ app.get("/images", (req, res) => {
         console.log("rows: ", rows);
         res.json(rows);
     });
+});
+
+app.get(`/images/:id`, (req, res) => {
+    console.log("req.params: ", req.params.id);
+    console.log("req.params parsed: ", Number(req.params.id));
+    getImagesModal(Number(req.params.id))
+        .then(({ rows }) => {
+            console.log(" Modalrows: ", rows[0]);
+            res.json(rows[0]);
+        })
+        .catch(function(err) {
+            console.log(err);
+            res.sendStatus(500);
+        });
 });
 
 app.post("/upload", uploader.single("image"), s3.upload, function(req, res) {

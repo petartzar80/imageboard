@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* background-color: #7fa99b; */
+    /* background-color: rgba(112, 66, 20, 0.05); */
 }
 
 #main {
@@ -23,6 +23,19 @@ img:hover {
 
     /* -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
     /*filter: grayscale(1); /* Microsoft Edge and Firefox 35+ */
+}
+
+.components {
+    background-color: cyan;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.fruit {
+    font-size: 200px;
 }
 
 .inputfile {
@@ -79,7 +92,7 @@ img:hover {
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     grid-gap: 20px;
     align-items: stretch;
-    padding: 0 5px;
+    padding: 0 20px;
 }
 
 .imageWindow {
@@ -97,6 +110,7 @@ img:hover {
     height: 250px;
     object-fit: cover;
     margin: 5px auto;
+    z-index: -1;
     /* margin: 0 auto; */
 }
 
