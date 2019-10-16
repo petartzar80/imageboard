@@ -2,12 +2,24 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: #7fa99b;
+    /* background-color: #7fa99b; */
 }
 
 #main {
     /* display: grid; */
     /* grid-template-columns: 33% 33% 33%; */
+}
+
+img {
+    filter: gray; /* IE6-9 */
+    -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
+    filter: grayscale(1); /* Microsoft Edge and Firefox 35+ */
+}
+
+/* Disable grayscale on hover */
+img:hover {
+    -webkit-filter: grayscale(0);
+    filter: none;
 }
 
 .inputfile {
@@ -41,7 +53,7 @@
     outline: -webkit-focus-ring-color auto 5px;
 }
 
-.imageDiv {
+/* .imageDiv {
     width: 100%;
     display: flex;
     justify-content: space-around;
@@ -57,24 +69,51 @@
     height: 300px;
     justify-items: center;
     background-color: #f79c1d;
+} */
+
+.imageDiv {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    grid-gap: 20px;
+    align-items: stretch;
+}
+
+.imageWindow {
+    display: grid;
+    border: 1px solid #ccc;
+    box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3);
+    max-width: 100%;
+    align-items: center;
 }
 
 .imageWindow img {
     width: 250px;
     height: 250px;
     object-fit: cover;
+    margin: 5px auto;
     /* margin: 0 auto; */
 }
 
 .imageTitle {
     /* border: 3px red solid; */
-    background-color: #f79c1d;
+    display: grid;
+    align-content: center;
+    /* background-color: #f79c1d; */
     color: black;
+    width: 250px;
+
+    /* margin: 2px 10px 12px; */
 }
 
 .imageTitle p {
+    /* height: 50px; */
+    margin: 5px auto;
+    width: 250px;
+
+    text-align: center;
     font-family: "Special Elite", cursive;
-    background-color: #f79c1d;
+    background-color: rgb(211, 211, 211);
+    /* background-color: #f79c1d; */
 }
 
 .input {
