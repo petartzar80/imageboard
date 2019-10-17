@@ -25,15 +25,19 @@
         </div>
         <br>
         <div class="imageDiv">
-            <div @click="selectedImage = image.id" v-for="image in images" class="imageWindow" v-if="images.length">
+            <div  v-for="image in images" class="imageWindow" v-if="images.length">
+            <!-- <div @click="selectedImage = image.id" v-for="image in images" class="imageWindow" v-if="images.length"> -->
+                <a :href="'#' + image.id" class="imageAnchor">
                     <img  :src="image.url">
-                <br>
-                <div class="imageTitle">
-                    <p>{{image.title}}</p>
-                </div>
+                    <br>
+                    <div class="imageTitle">
+                        <p>{{image.title}}</p>
+                    </div>
+                </a>
+
             </div>
         </div>
-        <div class="moreImages" v-if="images.length >= 10">
+        <div class="moreImages" v-if="showButton && images.length >= 10">
             <button @click="moreImg" type="button" name="more">MORE IMAGES</button>
         </div>
 
@@ -89,3 +93,7 @@
 </body>
 
 </html>
+
+<!-- addEventListener('hashchange', function() {
+    console.log("hash change event fired!");
+}); -->

@@ -10,6 +10,8 @@
     /* grid-template-columns: 33% 33% 33%; */
 }
 
+/* Disable grayscale on hover */
+
 img {
     /* filter: gray; /* IE6-9 */
     height: 500px;
@@ -18,14 +20,13 @@ img {
     transition: 0.5s ease;
 }
 
-/* Disable grayscale on hover */
 img:hover {
     -webkit-filter: sepia(0);
     filter: sepia(0);
-
-    /* -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
-    /*filter: grayscale(1); /* Microsoft Edge and Firefox 35+ */
 }
+
+/* -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
+/*filter: grayscale(1); /* Microsoft Edge and Firefox 35+ */
 
 .components {
     overflow: scroll;
@@ -35,6 +36,7 @@ img:hover {
     left: 0;
     right: 0;
     bottom: 0;
+    z-index: 1;
 }
 
 .fruit {
@@ -96,6 +98,13 @@ img:hover {
     grid-gap: 20px;
     align-items: stretch;
     padding: 0 20px;
+    /* z-index: -1; */
+}
+
+.imageAnchor {
+    display: grid;
+    /* z-index: -1; */
+    align-items: center;
 }
 
 .imageWindow {
@@ -114,7 +123,7 @@ img:hover {
     height: 250px;
     object-fit: cover;
     margin: 5px auto;
-    z-index: -1;
+    /* z-index: -5; */
     /* margin: 0 auto; */
 }
 

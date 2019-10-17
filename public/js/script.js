@@ -71,13 +71,38 @@
             title: "",
             desc: "",
             file: null,
-            selectedImage: null
+            selectedImage: location.hash.slice(1),
+            showButton: true
+            // selectedImage: null
         },
         created: function() {
             console.log("created!");
         },
+        // watch: {
+        //     selectedImage: function() {
+        //         console.log("I'm the watcher and the id just changed");
+        //         axios
+        //             .get("/images")
+        //             .then(
+        //                 function(resp) {
+        //                     console.log("res images: ", resp);
+        //                     console.log("res images data: ", resp.data);
+        //                     this.images = resp.data;
+        //                 }.bind(this)
+        //             )
+        //             .catch(function() {
+        //                 console.log("catch");
+        //             });
+        //     }
+        // },
         mounted: function() {
+            var self = this;
             console.log("mounted!");
+            addEventListener("hashchange", function() {
+                self.selectedImage = location.hash.slice(1);
+                // self.imageId = location.hash.slice(1);
+                console.log("hash change event fired!");
+            });
             axios
                 .get("/images")
                 .then(
@@ -127,6 +152,12 @@
                             console.log("res images moar: ", resp);
                             console.log("res images  moar data: ", resp.data);
                             for (let i = 0; i < resp.data.rows.length; i++) {
+                                if (
+                                    resp.data.rows[i].id ===
+                                    resp.data.rows[i].lowest_id
+                                ) {
+                                    this.showButton = false;
+                                }
                                 this.images.push(resp.data.rows[i]);
                             }
 
@@ -145,7 +176,11 @@
                 console.log("closeMe is running");
                 console.log("count is:", count);
                 this.selectedImage = null;
+                location.hash = "";
+                history.replaceState(null, null, " ");
             }
         }
     });
 })();
+
+// location.hash.slice(1);

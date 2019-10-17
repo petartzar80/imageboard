@@ -60,21 +60,13 @@ app.get(`/images/:id`, (req, res) => {
 app.get(`/moreimages/:lastId`, (req, res) => {
     console.log("req.params: ", req.params.lastId);
     console.log("req.params parsed: ", Number(req.params.lastId));
-    let moreImages;
-    let buttonBoolean;
+    let buttonBoolean = false;
     getMoreImages(Number(req.params.lastId))
         .then(({ rows }) => {
+            // console.log(buttonBoolean);
             console.log(" Morerows: ", rows);
+            console.log("is the boolean here? ", buttonBoolean);
             res.json({ rows });
-        })
-        .catch(function(err) {
-            console.log(err);
-            res.sendStatus(500);
-        });
-    checkButton(Number(req.params.lastId))
-        .then(({ rows }) => {
-            console.log(" lastId: ", rows);
-            // res.json({ rows });
         })
         .catch(function(err) {
             console.log(err);

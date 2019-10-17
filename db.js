@@ -15,17 +15,7 @@ module.exports.getImages = () => {
 
 exports.getMoreImages = lastId => {
     return db.query(
-        `SELECT * FROM images
-        WHERE id < $1
-        ORDER BY id DESC
-        LIMIT 10`,
-        [lastId]
-    );
-};
-
-exports.checkButton = lastId => {
-    return db.query(
-        `SELECT id, (
+        `SELECT *, (
             SELECT id FROM images
             ORDER BY id ASC
             LIMIT 1
