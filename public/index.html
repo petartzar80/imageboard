@@ -50,17 +50,13 @@
 
         </ul> -->
     </div>
-    <script type="text/x-template" id="template">
-        <div class="components">
-            <h1 @click="closeModal">My first template {{selectedFruit}}</h1>
-            My name is: {{name}}
-            <button @click="count++">Click Me!</button> Count: {{count}}
-        </div>
-    </script>
     <script type="text/x-template" id="imageTemplate">
         <div class="components">
+            <div class="close" @click="closeModal">
+                <h1>X</h1>
+            </div>
 
-            <h1 @click="closeModal">My image template {{selectedImage}}</h1>
+            <h1 >My image template {{selectedImage}}</h1>
             <img  :src="images.url">
             <div class="imageTitle">
                 <h1>{{images.title}}</h1>
@@ -73,10 +69,13 @@
                 <button @click="submit">submit</button>
             </div>
             <p>Comments:</p>
-            <div v-for="comment in comments" class="comments">
+            <div class="comments">
+                <div v-for="comment in comments">
 
-                <p>{{comment.comment_user}} : {{comment.comment}}</p>
+                    <p>{{comment.comment_user}} : {{comment.comment}}</p>
+                </div>
             </div>
+
 
         </div>
     </script>

@@ -12,6 +12,7 @@
 
 img {
     /* filter: gray; /* IE6-9 */
+    height: 500px;
     -webkit-filter: sepia(1);
     filter: sepia(1);
     transition: 0.5s ease;
@@ -26,6 +27,7 @@ img:hover {
 }
 
 .components {
+    overflow: scroll;
     background-color: cyan;
     position: fixed;
     top: 0;
@@ -142,6 +144,11 @@ img:hover {
 
 .input p {
     display: inline;
+}
+
+.comments {
+    position: relative;
+    background-color: magenta;
 }
 
 h1 {

@@ -9,20 +9,60 @@ module.exports.getImages = () => {
     return db.query(`SELECT *
         FROM images
         ORDER BY id DESC
+        LIMIT 10;
     `);
 };
 
+// grab the iimages by the smallest id on screen
+
+// if the smallest id exists in the query above, we should make the button go away
+
+// run the smallest id query every time the more button is clicked
+
+// more button in the view instance
+// in script figure out which is the smallest id in the array of images showing
+
+// module.exports.getImagesModal = id => {
+//     return db.query(
+//         `SELECT *
+//         FROM images
+//         WHERE images.id = $1
+//         `,
+//         [id]
+//     );
+// };
+
 module.exports.getImagesModal = id => {
     return db.query(
-        `SELECT *
-        FROM comments
-        LEFT JOIN images
-        ON comments.image_id = images.id
-        WHERE images.id = $1
+        `
+            SELECT *
+            FROM comments
+            FULL OUTER JOIN images
+            ON images.id = comments.image_id
+            WHERE images.id = $1;
+
         `,
         [id]
     );
 };
+// module.exports.getImagesModal = id => {
+//     return db.query(
+//         `IF (comments.image_id = 1) THEN
+//             SELECT *
+//             FROM images
+//             WHERE images.id = 1
+//         ELSE
+//             SELECT *
+//             FROM comments
+//             LEFT JOIN images
+//             ON comments.image_id = images.id
+//             WHERE images.id = 1
+//         END IF;
+//
+//         `,
+//         [id]
+//     );
+// };
 
 module.exports.addImage = (url, username, title, description) => {
     return db.query(

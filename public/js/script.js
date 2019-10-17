@@ -1,25 +1,4 @@
 (function() {
-    Vue.component("first-component", {
-        template: "#template",
-        data: function() {
-            return {
-                name: "Pete",
-                count: 0
-            };
-        },
-        props: ["postTitle", "selectedFruit"],
-        mounted: function() {
-            // make an axios request to get the info about the image with the id
-            console.log("postTitle", this.postTitle);
-            console.log("selectedFruit", this.selectedFruit);
-        },
-        methods: {
-            closeModal: function() {
-                console.log("Emitting from the component");
-                this.$emit("close", this.count);
-            }
-        }
-    });
     Vue.component("image-modal", {
         template: "#imageTemplate",
         data: function() {
@@ -45,8 +24,8 @@
                         console.log("res images: ", resp);
                         console.log("res images data: ", resp.data);
                         this.images = resp.data.images;
-                        this.comments = resp.data.comments;
-                        // this.comments.unshift(this.comment);
+                        this.comments = resp.data.comments.reverse();
+                        // this.comments.unshift(resp.data.comments);
                         // this.images.unshift(resp.data);
                         // this.username = resp.data[0].
                     }.bind(this)
@@ -92,22 +71,7 @@
             title: "",
             desc: "",
             file: null,
-            selectedFruit: null,
-            selectedImage: null,
-            fruits: [
-                {
-                    title: "🥝",
-                    id: 1
-                },
-                {
-                    title: "🍓",
-                    id: 2
-                },
-                {
-                    title: "🍋",
-                    id: 3
-                }
-            ]
+            selectedImage: null
         },
         created: function() {
             console.log("created!");
