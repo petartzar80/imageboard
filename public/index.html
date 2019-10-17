@@ -11,12 +11,10 @@
     <h1>Les Images.</h1>
 
     <div id="main">
-        <first-component @close="closeMe" :selected-fruit="selectedFruit" post-title="hello" v-if="selectedFruit"></first-component>
 
         <image-modal @close="closeMe" :selected-image="selectedImage" post-title="hello" v-if="selectedImage"></image-modal>
 
-        <p @click="selectedFruit = fruit.id" class="fruit" v-for="fruit in fruits" v-if="fruits.length">{{fruit.title}}</p>
-        <!-- <first-component></first-component> -->
+
         <div class="input">
             <input v-model="username" name="username" placeholder="username">
             <input v-model="title" name="title" placeholder="title">
@@ -35,6 +33,10 @@
                 </div>
             </div>
         </div>
+        <div class="moreImages" v-if="images.length >= 10">
+            <button @click="moreImg" type="button" name="more">MORE IMAGES</button>
+        </div>
+
 
 
             <!-- <strong v-if="chicken.name == 'Chicken Little'">!!!</strong> -->

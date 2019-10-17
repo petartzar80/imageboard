@@ -21,6 +21,7 @@ img {
 /* Disable grayscale on hover */
 img:hover {
     -webkit-filter: sepia(0);
+    filter: sepia(0);
 
     /* -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
     /*filter: grayscale(1); /* Microsoft Edge and Firefox 35+ */
@@ -99,7 +100,8 @@ img:hover {
 
 .imageWindow {
     display: grid;
-    border: 1px solid #704214;
+    border: 1px solid orange;
+    /* border: 1px solid #704214; */
     /* border: 1px solid #ccc; */
     /* box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3); */
     box-shadow: 2px 2px 6px 0px rgba(112, 66, 20, 0.3);
@@ -149,6 +151,11 @@ img:hover {
 .comments {
     position: relative;
     background-color: magenta;
+}
+
+.moreImages {
+    width: 100px;
+    margin: 10px auto;
 }
 
 h1 {

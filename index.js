@@ -2,7 +2,14 @@ const express = require("express");
 const app = express();
 const s3 = require("./s3");
 const { s3Url } = require("./config");
-const { getImages, getImagesModal, addImage, addComment } = require("./db");
+const {
+    getImages,
+    getImagesModal,
+    getMoreImages,
+    checkButton,
+    addImage,
+    addComment
+} = require("./db");
 const multer = require("multer");
 const uidSafe = require("uid-safe");
 const path = require("path");
@@ -43,6 +50,31 @@ app.get(`/images/:id`, (req, res) => {
         .then(({ rows }) => {
             console.log(" Modalrows: ", rows);
             res.json({ images: rows[0], comments: rows });
+        })
+        .catch(function(err) {
+            console.log(err);
+            res.sendStatus(500);
+        });
+});
+
+app.get(`/moreimages/:lastId`, (req, res) => {
+    console.log("req.params: ", req.params.lastId);
+    console.log("req.params parsed: ", Number(req.params.lastId));
+    let moreImages;
+    let buttonBoolean;
+    getMoreImages(Number(req.params.lastId))
+        .then(({ rows }) => {
+            console.log(" Morerows: ", rows);
+            res.json({ rows });
+        })
+        .catch(function(err) {
+            console.log(err);
+            res.sendStatus(500);
+        });
+    checkButton(Number(req.params.lastId))
+        .then(({ rows }) => {
+            console.log(" lastId: ", rows);
+            // res.json({ rows });
         })
         .catch(function(err) {
             console.log(err);

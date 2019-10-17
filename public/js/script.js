@@ -116,11 +116,26 @@
                         console.log("error: ", error);
                     });
             },
-            handleClick: function() {
-                this.logChicken();
-            },
-            logChicken: function() {
-                console.log(this.chicken);
+            moreImg: function() {
+                console.log("gimme MOAR");
+                let lastId = this.images[this.images.length - 1].id;
+                console.log("last id: ", lastId);
+                axios
+                    .get(`/moreimages/${lastId}`)
+                    .then(
+                        function(resp) {
+                            console.log("res images moar: ", resp);
+                            console.log("res images  moar data: ", resp.data);
+                            for (let i = 0; i < resp.data.rows.length; i++) {
+                                this.images.push(resp.data.rows[i]);
+                            }
+
+                            console.log("this.images MOAR: ", this.images);
+                        }.bind(this)
+                    )
+                    .catch(function() {
+                        console.log("catch");
+                    });
             },
             fileSelected: function(e) {
                 console.log(e.target.files);
