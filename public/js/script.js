@@ -80,6 +80,10 @@
                             console.log("res images: ", resp);
                             console.log("res images data: ", resp.data);
                             this.images = resp.data.images;
+                            console.log(
+                                "resp data comments: ",
+                                resp.data.comments
+                            );
                             this.comments = resp.data.comments.reverse();
                             // this.comments.unshift(resp.data.comments);
                             // this.images.unshift(resp.data);

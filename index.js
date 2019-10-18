@@ -49,7 +49,11 @@ app.get(`/images/:id`, (req, res) => {
     getImagesModal(Number(req.params.id))
         .then(({ rows }) => {
             console.log(" Modalrows: ", rows);
-            res.json({ images: rows[0], comments: rows });
+            if (rows[0].comment === null) {
+                res.json({ images: rows[0] });
+            } else {
+                res.json({ images: rows[0], comments: rows });
+            }
         })
         .catch(function(err) {
             console.log(err);

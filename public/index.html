@@ -8,21 +8,24 @@
 
 </head>
 <body>
-    <h1>Les Images.</h1>
+
 
     <div id="main">
 
         <image-modal @close="closeMe" :selected-image="selectedImage" post-title="hello" v-if="selectedImage"></image-modal>
 
-
-        <div class="input">
-            <input v-model="username" name="username" placeholder="username">
-            <input v-model="title" name="title" placeholder="title">
-            <input v-model="desc" name="description" placeholder="description">
-            <input type="file"  id="file" class="inputfile" accept="image/*" @change="fileSelected">
-            <label for="file">Choose a file</label>
-            <button @click="upload">upload</button>
+        <div class="topBar">
+            <h1>Les Images.</h1>
+            <div class="input">
+                <input v-model="username" name="username" placeholder="username">
+                <input v-model="title" name="title" placeholder="title">
+                <input v-model="desc" name="description" placeholder="description">
+                <input type="file"  id="file" class="inputfile" accept="image/*" @change="fileSelected">
+                <label for="file">Choose a file</label>
+                <button @click="upload">upload</button>
+            </div>
         </div>
+
         <br>
         <div class="imageDiv">
             <div  v-for="image in images" class="imageWindow" v-if="images.length">
@@ -37,7 +40,7 @@
 
             </div>
         </div>
-        <div class="moreImages" v-if="showButton && images.length >= 10">
+        <div class="moreImages" v-if="showButton && images.length >= 12">
             <button @click="moreImg" type="button" name="more">MORE IMAGES</button>
         </div>
 

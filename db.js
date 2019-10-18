@@ -9,7 +9,7 @@ module.exports.getImages = () => {
     return db.query(`SELECT *
         FROM images
         ORDER BY id DESC
-        LIMIT 10
+        LIMIT 12
     `);
 };
 
@@ -22,7 +22,7 @@ exports.getMoreImages = lastId => {
         ) AS lowest_id FROM images
         WHERE id < $1
         ORDER BY id DESC
-        LIMIT 10`,
+        LIMIT 12`,
         [lastId]
     );
 };
