@@ -47,28 +47,6 @@
                 console.log("Emitting from the component");
                 this.$emit("close", this.count);
             },
-            submit: function() {
-                let commentData = {
-                    imageId: this.selectedImage,
-                    user: this.user,
-                    comment: this.comment
-                };
-                axios
-                    .post("/comment", commentData)
-                    .then(
-                        function(res) {
-                            console.log("axios upload res: ", res);
-                            console.log("res.data.comment:", res.data.comment);
-                            // this.comment = res.data.comment;
-                            this.comments.unshift(res.data);
-                            //unshift the new  image into the array
-                        }.bind(this)
-                    )
-                    .catch(function(error) {
-                        this.error = true;
-                        console.log("error: ", error);
-                    });
-            },
             imageAndComments: function() {
                 // make an axios request to get the info about the image with the id
                 console.log("postTitle", this.postTitle);
@@ -92,6 +70,34 @@
                     )
                     .catch(function() {
                         console.log("catch");
+                    })
+                    .then(function() {
+                        this.selectedImage = null;
+                        location.hash = "";
+                        history.replaceState(null, null, " ");
+                    });
+            },
+            submit: function() {
+                let commentData = {
+                    imageId: this.selectedImage,
+                    user: this.user,
+                    comment: this.comment
+                };
+                axios
+                    .post("/comment", commentData)
+                    .then(
+                        function(res) {
+                            console.log("axios upload res: ", res);
+                            console.log("res.data.comment:", res.data.comment);
+                            console.log("THIS COMMENTS: ", this.comments);
+                            // this.comment = res.data.comment;
+                            // this.comments.unshift(res.data);
+                            //unshift the new  image into the array
+                        }.bind(this)
+                    )
+                    .catch(function(error) {
+                        this.error = true;
+                        console.log("error: ", error);
                     });
             }
         }
