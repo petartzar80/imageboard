@@ -13,27 +13,35 @@
             };
         },
         props: ["postTitle", "selectedImage"],
-        mounted: function() {
-            // make an axios request to get the info about the image with the id
-            console.log("postTitle", this.postTitle);
-            console.log("selectedImage", this.selectedImage);
-            axios
-                .get(`/images/${this.selectedImage}`)
-                .then(
-                    function(resp) {
-                        console.log("res images: ", resp);
-                        console.log("res images data: ", resp.data);
-                        this.images = resp.data.images;
-                        this.comments = resp.data.comments.reverse();
-                        // this.comments.unshift(resp.data.comments);
-                        // this.images.unshift(resp.data);
-                        // this.username = resp.data[0].
-                    }.bind(this)
-                )
-                .catch(function() {
-                    console.log("catch");
-                });
+        watch: {
+            selectedImage: function() {
+                this.imageAndComments();
+            }
         },
+        mounted: function() {
+            this.imageAndComments();
+        },
+        // mounted: function() {
+        //     // make an axios request to get the info about the image with the id
+        //     console.log("postTitle", this.postTitle);
+        //     console.log("selectedImage", this.selectedImage);
+        //     axios
+        //         .get(`/images/${this.selectedImage}`)
+        //         .then(
+        //             function(resp) {
+        //                 console.log("res images: ", resp);
+        //                 console.log("res images data: ", resp.data);
+        //                 this.images = resp.data.images;
+        //                 this.comments = resp.data.comments.reverse();
+        //                 // this.comments.unshift(resp.data.comments);
+        //                 // this.images.unshift(resp.data);
+        //                 // this.username = resp.data[0].
+        //             }.bind(this)
+        //         )
+        //         .catch(function() {
+        //             console.log("catch");
+        //         });
+        // },
         methods: {
             closeModal: function() {
                 console.log("Emitting from the component");
@@ -60,6 +68,27 @@
                         this.error = true;
                         console.log("error: ", error);
                     });
+            },
+            imageAndComments: function() {
+                // make an axios request to get the info about the image with the id
+                console.log("postTitle", this.postTitle);
+                console.log("selectedImage", this.selectedImage);
+                axios
+                    .get(`/images/${this.selectedImage}`)
+                    .then(
+                        function(resp) {
+                            console.log("res images: ", resp);
+                            console.log("res images data: ", resp.data);
+                            this.images = resp.data.images;
+                            this.comments = resp.data.comments.reverse();
+                            // this.comments.unshift(resp.data.comments);
+                            // this.images.unshift(resp.data);
+                            // this.username = resp.data[0].
+                        }.bind(this)
+                    )
+                    .catch(function() {
+                        console.log("catch");
+                    });
             }
         }
     });
@@ -78,23 +107,6 @@
         created: function() {
             console.log("created!");
         },
-        // watch: {
-        //     selectedImage: function() {
-        //         console.log("I'm the watcher and the id just changed");
-        //         axios
-        //             .get("/images")
-        //             .then(
-        //                 function(resp) {
-        //                     console.log("res images: ", resp);
-        //                     console.log("res images data: ", resp.data);
-        //                     this.images = resp.data;
-        //                 }.bind(this)
-        //             )
-        //             .catch(function() {
-        //                 console.log("catch");
-        //             });
-        //     }
-        // },
         mounted: function() {
             var self = this;
             console.log("mounted!");
