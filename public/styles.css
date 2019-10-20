@@ -5,6 +5,17 @@
     /* background-color: rgba(112, 66, 20, 0.05); */
 }
 
+@font-face {
+    font-family: "c64";
+    src: url("fonts/C64_Pro_Mono-STYLE.woff");
+    font-style: normal;
+    font-weight: normal;
+}
+
+body {
+    background-color: black;
+}
+
 #main {
     /* display: grid; */
     /* grid-template-columns: 33% 33% 33%; */
@@ -14,7 +25,7 @@
 
 img {
     /* filter: gray; /* IE6-9 */
-    height: 500px;
+    /* height: 500px; */
     -webkit-filter: sepia(1);
     filter: sepia(1);
     transition: 0.5s ease;
@@ -40,19 +51,65 @@ img:hover {
 /* -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
 /*filter: grayscale(1); /* Microsoft Edge and Firefox 35+ */
 
+.mainInput {
+    background-color: #880000;
+    border: none;
+    font-family: "c64";
+    padding: 10px;
+}
+
 .components {
-    overflow: scroll;
-    background-color: cyan;
+    height: 80vh;
+    max-width: 800px;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 2px solid rgb(0, 254, 0);
+    padding: 20px;
+    /* position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3; */
+}
+
+.components img {
+    /* margin: 20px; */
+    max-width: calc(100% - 40px);
+    max-height: 500px;
+    display: block;
+    margin: auto;
+}
+
+.components h1 {
+    margin: 20px 0;
+}
+
+.components h2 {
+    margin: 20px 0;
+    font-family: "c64";
+    font-size: 18px;
+}
+
+.components .modalUploader {
+    text-align: left;
+}
+
+.components .uploadButton {
+    display: inline;
+}
+
+.overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: fixed;
+    background-color: rgba(0, 0, 0, 0.7);
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     z-index: 3;
-}
-
-.components img {
-    margin: 20px;
 }
 
 .close {
@@ -65,10 +122,6 @@ img:hover {
     text-align: right;
 }
 
-.fruit {
-    font-size: 200px;
-}
-
 .inputfile {
     width: 0.1px;
     height: 0.1px;
@@ -79,25 +132,53 @@ img:hover {
 }
 
 .inputfile + label {
-    font-size: 1.25em;
+    font-size: 1em;
     font-weight: 700;
-    color: white;
+    color: #0088ff;
     background-color: black;
     display: inline-block;
+    font-family: "c64";
+    margin: 10px 0;
+    width: 280px;
+    padding: 10px;
+    border-width: 2px;
+    border-style: outset;
+    border-color: buttonface;
+    border-image: initial;
+    text-align: center;
+    cursor: pointer;
 }
 
 .inputfile:focus + label,
 .inputfile + label:hover {
-    background-color: red;
-}
-
-.inputfile + label {
-    cursor: pointer; /* "hand" cursor */
+    background-color: #eeee77;
+    color: black;
 }
 
 .inputfile:focus + label {
     outline: 1px dotted #000;
     outline: -webkit-focus-ring-color auto 5px;
+}
+
+.uploadButton {
+    background-color: black;
+    color: #0088ff;
+    font-family: "c64";
+    width: 280px;
+    font-size: 1em;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.uploadButton:hover {
+    background-color: #eeee77;
+    color: black;
+}
+
+.comment {
+    padding: 10px 5px 5px;
+    background-color: rgb(0, 254, 0);
+    font-family: "c64";
 }
 
 /* .imageDiv {
@@ -118,8 +199,13 @@ img:hover {
     background-color: #f79c1d;
 } */
 
+.commentContent {
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
 .imageDiv {
-    margin-top: 100px;
+    margin-top: 170px;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     grid-gap: 20px;
@@ -132,11 +218,12 @@ img:hover {
     display: grid;
     /* z-index: -1; */
     align-items: center;
+    text-decoration: none;
 }
 
 .imageWindow {
     display: grid;
-    border: 1px solid orange;
+    border: 1px solid rgb(0, 254, 0);
     /* border: 1px solid #704214; */
     /* border: 1px solid #ccc; */
     /* box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3); */
@@ -160,7 +247,7 @@ img:hover {
     /* display: grid;
     align-content: center; */
     /* background-color: #f79c1d; */
-    color: black;
+    color: grey;
     /* width: 250px; */
 
     /* margin: 2px 10px 12px; */
@@ -169,13 +256,13 @@ img:hover {
 }
 
 .imageTitle p {
+    color: rgb(0, 254, 0);
     /* height: 50px; */
     /* margin: 5px auto;
     margin-bottom: 20px; */
     /* width: 250px; */
-
     text-align: center;
-    font-family: "Special Elite", cursive;
+    font-family: "c64", cursive;
     /* background-color: rgb(211, 211, 211); */
     /* background-color: #f79c1d; */
 }
@@ -190,7 +277,7 @@ img:hover {
 
 .comments {
     position: relative;
-    background-color: magenta;
+    /* background-color: magenta; */
 }
 
 .moreImages {
@@ -202,16 +289,18 @@ img:hover {
     padding: 10px 25px;
     position: fixed;
     z-index: 2;
-    background-color: white;
+    background-color: rgba(0, 0, 0, 0.7);
     width: 100vw;
+    border-bottom: 2px solid rgb(0, 254, 0);
 }
 
 h1 {
     display: flex;
     justify-content: flex-start;
-
+    color: rgb(0, 254, 0);
     /* color: green; */
     margin: 0 auto;
-    font-family: "Abril Fatface", cursive;
-    font-size: 50px;
+    font-family: "c64", cursive;
+    font-size: 40px;
+    margin-bottom: 10px;
 }

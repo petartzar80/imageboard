@@ -21,27 +21,6 @@
         mounted: function() {
             this.imageAndComments();
         },
-        // mounted: function() {
-        //     // make an axios request to get the info about the image with the id
-        //     console.log("postTitle", this.postTitle);
-        //     console.log("selectedImage", this.selectedImage);
-        //     axios
-        //         .get(`/images/${this.selectedImage}`)
-        //         .then(
-        //             function(resp) {
-        //                 console.log("res images: ", resp);
-        //                 console.log("res images data: ", resp.data);
-        //                 this.images = resp.data.images;
-        //                 this.comments = resp.data.comments.reverse();
-        //                 // this.comments.unshift(resp.data.comments);
-        //                 // this.images.unshift(resp.data);
-        //                 // this.username = resp.data[0].
-        //             }.bind(this)
-        //         )
-        //         .catch(function() {
-        //             console.log("catch");
-        //         });
-        // },
         methods: {
             closeModal: function() {
                 console.log("Emitting from the component");
@@ -57,24 +36,20 @@
                         function(resp) {
                             console.log("res images: ", resp);
                             console.log("res images data: ", resp.data);
-                            this.images = resp.data.images;
                             console.log(
                                 "resp data comments: ",
                                 resp.data.comments
                             );
-                            this.comments = resp.data.comments.reverse();
-                            // this.comments.unshift(resp.data.comments);
-                            // this.images.unshift(resp.data);
-                            // this.username = resp.data[0].
+                            if (resp.data.images) {
+                                this.images = resp.data.images;
+                                this.comments = resp.data.comments.reverse();
+                            } else {
+                                this.$emit("close");
+                            }
                         }.bind(this)
                     )
                     .catch(function() {
                         console.log("catch");
-                    })
-                    .then(function() {
-                        this.selectedImage = null;
-                        location.hash = "";
-                        history.replaceState(null, null, " ");
                     });
             },
             submit: function() {
@@ -90,8 +65,9 @@
                             console.log("axios upload res: ", res);
                             console.log("res.data.comment:", res.data.comment);
                             console.log("THIS COMMENTS: ", this.comments);
-                            // this.comment = res.data.comment;
-                            // this.comments.unshift(res.data);
+                            this.comment = res.data.comment;
+                            this.comments.unshift(res.data);
+
                             //unshift the new  image into the array
                         }.bind(this)
                     )

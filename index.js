@@ -48,11 +48,15 @@ app.get(`/images/:id`, (req, res) => {
     console.log("req.params parsed: ", Number(req.params.id));
     getImagesModal(Number(req.params.id))
         .then(({ rows }) => {
-            console.log(" Modalrows: ", rows);
-            if (rows[0].comment === null) {
-                res.json({ images: rows[0] });
+            if (rows[0]) {
+                console.log(" Modalrows: ", rows);
+                if (rows[0].comment === null) {
+                    res.json({ images: rows[0] });
+                } else {
+                    res.json({ images: rows[0], comments: rows });
+                }
             } else {
-                res.json({ images: rows[0], comments: rows });
+                res.json(rows);
             }
         })
         .catch(function(err) {
@@ -124,6 +128,7 @@ app.post("/comment", (req, res) => {
             res.json({
                 comment_user: user,
                 comment: comment,
+                comment_at: rows[0].comment_at.toUTCString(),
                 imageId: imageId,
                 id: rows[0].id
             });
@@ -133,6 +138,10 @@ app.post("/comment", (req, res) => {
             console.log(err);
             res.sendStatus(500);
         });
+});
+
+app.get("/*", (req, res) => {
+    res.redirect("/");
 });
 
 app.listen(process.env.PORT || 8080, () =>

@@ -10,22 +10,27 @@
 <body>
 
 
+    <!-- <h1 v-if="error.statusCode === 404">500</h1> -->
     <div id="main">
 
         <image-modal @close="closeMe" :selected-image="selectedImage" post-title="hello" v-if="selectedImage"></image-modal>
 
         <div class="topBar">
-            <h1>Les Images.</h1>
+            <h1>Les Images PETSCII.</h1>
             <div class="input">
-                <input v-model="username" name="username" placeholder="username">
-                <input v-model="title" name="title" placeholder="title">
-                <input v-model="desc" name="description" placeholder="description">
-                <input type="file"  id="file" class="inputfile" accept="image/*" @change="fileSelected">
-                <label for="file">Choose a file</label>
-                <button @click="upload">upload</button>
+                <div class="row1">
+                    <input v-model="username" name="username" placeholder="username" class="mainInput">
+                    <input v-model="title" name="title" placeholder="title" class="mainInput">
+                    <input v-model="desc" name="description" placeholder="description" class="mainInput">
+                </div>
+                <div class="row2">
+                    <input type="file"  id="file" class="inputfile" accept="image/*" @change="fileSelected">
+                    <label for="file">choose a file</label>
+                    <button @click="upload" class="uploadButton">upload</button>
+                </div>
+
             </div>
         </div>
-
         <br>
         <div class="imageDiv">
             <div  v-for="image in images" class="imageWindow" v-if="images.length">
@@ -60,29 +65,34 @@
         </ul> -->
     </div>
     <script type="text/x-template" id="imageTemplate">
-        <div class="components">
-            <div class="close">
-                <h1 class="close" @click="closeModal">X</h1>
-            </div>
-
-            <h1 >My image template {{selectedImage}}</h1>
-            <img  :src="images.url">
-            <div class="imageTitle">
-                <h1>{{images.title}}</h1>
-                <h2>{{images.description}}</h2>
-                <p>Uploaded by {{images.username}}</p>
-            </div>
-            <div class="input">
-                <p>Comment </p><input v-model="comment" name="comment" placeholder="comment">
-                <p>Username </p><input v-model="user" name="user" placeholder="username">
-                <button @click="submit">submit</button>
-            </div>
-            <p>Comments:</p>
-            <div class="comments">
-                <div v-for="comment in comments">
-
-                    <p>{{comment.comment_user}} : {{comment.comment}}</p>
+        <div class="overlay">
+            <div class="components">
+                <div class="close">
+                    <h1 class="close" @click="closeModal">X</h1>
                 </div>
+
+                <!-- <h1 >My image template {{selectedImage}}</h1> -->
+                <img  :src="images.url">
+                <div class="imageTitle">
+                    <h1>{{images.title}}</h1>
+                    <h2>{{images.description}}</h2>
+                    <p class="modalUploader">Uploaded by {{images.username}} on {{images.created_at}}</p>
+                </div>
+                <div class="input">
+                    <input v-model="comment" name="comment" placeholder="comment" class="mainInput">
+                    <input v-model="user" name="user" placeholder="username" class="mainInput">
+                    <button @click="submit" class="uploadButton">submit</button>
+                </div>
+                <p>Comments:</p>
+                <div class="comments">
+                    <div v-for="comment in comments" class="comment">
+
+                        <!-- <p>{{comment.comment_user}} : {{comment.comment}}</p> -->
+                        <p class="commentContent">{{comment.comment}}</p>
+                        <p class="commentUser">{{comment.comment_user}} on {{comment.comment_at}}</p>
+                    </div>
+                </div>
+
             </div>
 
 
