@@ -50,7 +50,9 @@ app.get(`/images/:id`, (req, res) => {
         .then(({ rows }) => {
             if (rows[0]) {
                 console.log(" Modalrows: ", rows);
+                rows[0].created_at = rows[0].created_at.toUTCString();
                 if (rows[0].comment === null) {
+                    console.log("created at: ", rows[0].created_at);
                     res.json({ images: rows[0] });
                 } else {
                     res.json({ images: rows[0], comments: rows });
