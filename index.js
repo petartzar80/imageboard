@@ -6,7 +6,6 @@ const {
     getImages,
     getImagesModal,
     getMoreImages,
-    checkButton,
     addImage,
     addComment
 } = require("./db");
@@ -38,21 +37,16 @@ app.use(express.json());
 
 app.get("/images", (req, res) => {
     getImages().then(({ rows }) => {
-        console.log("rows: ", rows);
         res.json(rows);
     });
 });
 
 app.get(`/images/:id`, (req, res) => {
-    console.log("req.params: ", req.params.id);
-    console.log("req.params parsed: ", Number(req.params.id));
     getImagesModal(Number(req.params.id))
         .then(({ rows }) => {
             if (rows[0]) {
-                console.log(" Modalrows: ", rows);
                 rows[0].created_at = rows[0].created_at.toUTCString();
                 if (rows[0].comment === null) {
-                    console.log("created at: ", rows[0].created_at);
                     res.json({ images: rows[0] });
                 } else {
                     res.json({ images: rows[0], comments: rows });
@@ -68,14 +62,8 @@ app.get(`/images/:id`, (req, res) => {
 });
 
 app.get(`/moreimages/:lastId`, (req, res) => {
-    console.log("req.params: ", req.params.lastId);
-    console.log("req.params parsed: ", Number(req.params.lastId));
-    let buttonBoolean = false;
     getMoreImages(Number(req.params.lastId))
         .then(({ rows }) => {
-            // console.log(buttonBoolean);
-            console.log(" Morerows: ", rows);
-            console.log("is the boolean here? ", buttonBoolean);
             res.json({ rows });
         })
         .catch(function(err) {
@@ -96,35 +84,16 @@ app.post("/upload", uploader.single("image"), s3.upload, function(req, res) {
                 url,
                 id: rows[0].id
             });
-            //send image to  client
         })
         .catch(function(err) {
             console.log(err);
             res.sendStatus(500);
         });
-    // if (req.file) {
-    //     const { username, desc, title } = req.body;
-    //     console.log("upload route username: ", username);
-    //     console.log("upload route desc: ", desc);
-    //     console.log("upload route title: ", title);
-    //     res.sendStatus(200);
-    //     //it worked!
-    // } else {
-    //     // it didnt
-    //     res.sendStatus(500);
-    // }
 });
 
 app.post("/comment", (req, res) => {
     const { imageId, user, comment } = req.body;
-    console.log(
-        "comm post id: ",
-        imageId,
-        " user: ",
-        user,
-        " comment: ",
-        comment
-    );
+
     addComment(user, comment, imageId)
         .then(function({ rows }) {
             res.json({
@@ -134,7 +103,6 @@ app.post("/comment", (req, res) => {
                 imageId: imageId,
                 id: rows[0].id
             });
-            //send image to  client
         })
         .catch(function(err) {
             console.log(err);

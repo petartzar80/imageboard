@@ -5,14 +5,10 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Special+Elite&display=swap" rel="stylesheet">
-
 </head>
+
 <body>
-
-
-    <!-- <h1 v-if="error.statusCode === 404">500</h1> -->
     <div id="main">
-
         <image-modal @close="closeMe" :selected-image="selectedImage" post-title="hello" v-if="selectedImage"></image-modal>
 
         <div class="topBar">
@@ -35,7 +31,6 @@
         <br>
         <div class="imageDiv">
             <div  v-for="image in images" class="imageWindow" v-if="images.length">
-            <!-- <div @click="selectedImage = image.id" v-for="image in images" class="imageWindow" v-if="images.length"> -->
                 <a :href="'#' + image.id" class="imageAnchor">
                     <img  :src="image.url">
                     <br>
@@ -50,20 +45,6 @@
             <button @click="moreImg" type="button" name="more" class="uploadButton">MORE IMAGES</button>
         </div>
 
-
-
-            <!-- <strong v-if="chicken.name == 'Chicken Little'">!!!</strong> -->
-
-
-        <!-- <ul>
-            <li v-for="image in images">
-                <div class="imageWindow">
-                    <img :src="image.url">
-                </div>
-            </li>
-
-
-        </ul> -->
     </div>
     <script type="text/x-template" id="imageTemplate">
         <div class="overlay">
@@ -72,7 +53,6 @@
                     <h1 class="close" @click="closeModal">X</h1>
                 </div>
 
-                <!-- <h1 >My image template {{selectedImage}}</h1> -->
                 <img  :src="images.url">
                 <div class="imageTitle">
                     <h1>{{images.title}}</h1>
@@ -87,16 +67,12 @@
                 <p>Comments:</p>
                 <div class="comments">
                     <div v-for="comment in comments" class="comment">
-
-                        <!-- <p>{{comment.comment_user}} : {{comment.comment}}</p> -->
                         <p class="commentContent">{{comment.comment}}</p>
                         <p class="commentUser">{{comment.comment_user}} on {{comment.comment_at}}</p>
                     </div>
                 </div>
 
             </div>
-
-
         </div>
     </script>
     <script src="/js/vue.js"></script>
@@ -107,7 +83,3 @@
 </body>
 
 </html>
-
-<!-- addEventListener('hashchange', function() {
-    console.log("hash change event fired!");
-}); -->
