@@ -62,9 +62,10 @@
                 <div class="input">
                     <input v-model="comment" name="comment" placeholder="comment" class="mainInput">
                     <input v-model="user" name="user" placeholder="username" class="mainInput">
+                    <br>
                     <button @click="submit" class="uploadButton">submit</button>
                 </div>
-                <p>Comments:</p>
+                <p class="comment-title">Comments:</p>
                 <div class="comments">
                     <div v-for="comment in comments" class="comment">
                         <p class="commentContent">{{comment.comment}}</p>
