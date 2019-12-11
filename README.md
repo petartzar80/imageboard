@@ -6,7 +6,11 @@
 
 ## Siteflow
 
--   gifs
+![Siteflow 1](siteflow1.gif)
+
+![Siteflow 2](siteflow2.gif)
+
+![Siteflow 3](siteflow3.gif)
 
 ## Tech
 
@@ -16,14 +20,18 @@ HTML, CSS, Node.js / Express, PostgreSQL, Vue.js, AWS / S3, Multer
 
 -   Picture upload + adding username, image title and description
 
--   Clicking on the thumbnail opens an overlay with a bigger version of the picture + allows adding comments (all users)
+-   Clicking on the thumbnail opens an overlay with a bigger version of the picture + allows adding comments for all users
 
 ## Goals while doing the project
 
 -   Learn Vue.js implementation
 
--   Add an image upload function with Multer, AWS / S3 (images stored in an AWS bucket)
+-   Image upload function with Multer, AWS / S3 (images stored in an AWS bucket)
 
--   Add comment function on every image page
+-   Comment function on every image page
 
--   Pagination via click on "more"-button
+-   Pagination: click on "more" button
+
+## Credits
+
+Images sourced via https://csdb.dk/

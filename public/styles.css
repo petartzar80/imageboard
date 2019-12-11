@@ -242,7 +242,7 @@ img:hover {
     font-family: "c64", cursive;
 }
 
-.input {
+.input.custom {
     display: grid;
     justify-content: space-around;
 }

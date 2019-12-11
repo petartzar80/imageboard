@@ -15,9 +15,9 @@
             <h1 class="title">PETSCII.</h1>
             <div class="input">
                 <div class="row1">
-                    <input v-model="username" name="username" placeholder="username" class="mainInput">
-                    <input v-model="title" name="title" placeholder="title" class="mainInput">
-                    <input v-model="desc" name="description" placeholder="description" class="mainInput">
+                    <input v-model="username" name="username" placeholder="username" class="mainInput" autocomplete="off">
+                    <input v-model="title" name="title" placeholder="title" class="mainInput" autocomplete="off">
+                    <input v-model="desc" name="description" placeholder="description" class="mainInput" autocomplete="off">
                 </div>
                 <div class="row2">
                     <input type="file"  id="file" class="inputfile" accept="image/*" @change="fileSelected">
@@ -59,9 +59,9 @@
                     <h2>{{images.description}}</h2>
                     <p class="modalUploader">Uploaded by {{images.username}} on {{images.created_at}}</p>
                 </div>
-                <div class="input">
-                    <input v-model="comment" name="comment" placeholder="comment" class="mainInput">
-                    <input v-model="user" name="user" placeholder="username" class="mainInput">
+                <div class="input custom">
+                    <input v-model="comment" name="comment" placeholder="comment" class="mainInput" autocomplete="off">
+                    <input v-model="user" name="user" placeholder="username" class="mainInput" autocomplete="off">
                     <br>
                     <button @click="submit" class="uploadButton">submit</button>
                 </div>
