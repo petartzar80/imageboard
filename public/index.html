@@ -23,27 +23,27 @@
                 <div class="row2">
                     <input type="file"  id="file" class="input-file" accept="image/*" @change="fileSelected">
                     <label for="file">choose a file</label>
-                    <button @click="upload" class="uploadButton">upload</button>
-                    <button class="uploadButton" onclick="window.open('http://petscii.krissz.hu/')">try it out</button>
+                    <button @click="upload" class="upload-button">upload</button>
+                    <button class="upload-button" onclick="window.open('http://petscii.krissz.hu/')">try it out</button>
                 </div>
 
             </div>
         </div>
         <br>
-        <div class="imageDiv">
-            <div  v-for="image in images" class="imageWindow" v-if="images.length">
-                <a :href="'#' + image.id" class="imageAnchor">
+        <div class="image-div">
+            <div  v-for="image in images" class="image-window" v-if="images.length">
+                <a :href="'#' + image.id" class="image-anchor">
                     <img  :src="image.url">
                     <br>
-                    <div class="imageTitle">
+                    <div class="image-title">
                         <p>{{image.title}}</p>
                     </div>
                 </a>
 
             </div>
         </div>
-        <div class="moreImages" v-if="showButton && images.length >= 12">
-            <button @click="moreImg" type="button" name="more" class="uploadButton">MORE IMAGES</button>
+        <div class="more-images" v-if="showButton && images.length >= 12">
+            <button @click="moreImg" type="button" name="more" class="upload-button">MORE IMAGES</button>
         </div>
 
     </div>
@@ -55,7 +55,7 @@
                 </div>
 
                 <img  :src="images.url">
-                <div class="imageTitle">
+                <div class="image-title">
                     <h1>{{images.title}}</h1>
                     <h2>{{images.description}}</h2>
                     <p class="modalUploader">Uploaded by {{images.username}} on {{images.created_at}}</p>
@@ -64,13 +64,13 @@
                     <input v-model="comment" name="comment" placeholder="comment" class="main-input" autocomplete="off">
                     <input v-model="user" name="user" placeholder="username" class="main-input" autocomplete="off">
                     <br>
-                    <button @click="submit" class="uploadButton">submit</button>
+                    <button @click="submit" class="upload-button">submit</button>
                 </div>
                 <p class="comment-title">Comments:</p>
                 <div class="comments">
                     <div v-for="comment in comments" class="comment">
-                        <p class="commentContent">{{comment.comment}}</p>
-                        <p class="commentUser">{{comment.comment_user}} on {{comment.comment_at}}</p>
+                        <p class="comment-content">{{comment.comment}}</p>
+                        <p class="comment-user">{{comment.comment_user}} on {{comment.comment_at}}</p>
                     </div>
                 </div>
 

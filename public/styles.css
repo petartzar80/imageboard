@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+/* :root {
+    font-size: calc(1vw + 1vh + 0.5vmin);
+} */
+
 @font-face {
     font-family: "c64";
     src: url("fonts/C64_Pro_Mono-STYLE.woff");
@@ -86,7 +90,7 @@ img:hover {
     text-align: left;
 }
 
-.components .uploadButton {
+.components .upload-button {
     display: inline;
 }
 
@@ -122,7 +126,6 @@ img:hover {
 
 .close h1 {
     display: inline-block;
-
     text-align: right;
 }
 
@@ -164,7 +167,7 @@ img:hover {
     outline: -webkit-focus-ring-color auto 5px;
 }
 
-.uploadButton {
+.upload-button {
     background-color: black;
     color: #0088ff;
     font-family: "c64";
@@ -174,7 +177,7 @@ img:hover {
     cursor: pointer;
 }
 
-.uploadButton:hover {
+.upload-button:hover {
     background-color: #eeee77;
     color: black;
 }
@@ -194,12 +197,12 @@ img:hover {
     font-family: "c64";
 }
 
-.commentContent {
+.comment-content {
     font-size: 25px;
     margin-bottom: 10px;
 }
 
-.imageDiv {
+.image-div {
     margin-top: 180px;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -208,13 +211,13 @@ img:hover {
     padding: 0 20px;
 }
 
-.imageAnchor {
+.image-anchor {
     display: grid;
     align-items: center;
     text-decoration: none;
 }
 
-.imageWindow {
+.image-window {
     display: grid;
     border: 1px solid rgb(0, 254, 0);
     box-shadow: 2px 2px 6px 0px rgba(112, 66, 20, 0.3);
@@ -223,20 +226,20 @@ img:hover {
     padding: 5px;
 }
 
-.imageWindow img {
+.image-window img {
     width: 250px;
     height: 250px;
     object-fit: cover;
     margin: 5px auto;
 }
 
-.imageTitle {
+.image-title {
     color: grey;
     margin: 5px auto;
     margin-bottom: 20px;
 }
 
-.imageTitle p {
+.image-title p {
     color: rgb(0, 254, 0);
     text-align: center;
     font-family: "c64", cursive;
@@ -255,7 +258,7 @@ img:hover {
     position: relative;
 }
 
-.moreImages {
+.more-images {
     width: 100%;
     margin: 10px 0px auto;
     display: flex;
